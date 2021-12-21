@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/wang-jiaxuan/funpic/raw/master/7d17ea385de717f81b86c7b8abdf13d2b40b5e2d.jpg@942w_531h_progressive.webp">
 <meta property="article:published_time" content="2021-12-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-21T11:51:08.207Z">
+<meta property="article:modified_time" content="2021-12-21T15:26:13.669Z">
 <meta property="article:author" content="BlaBlaWang">
 <meta property="article:tag" content="front-end">
 <meta name="twitter:card" content="summary">
@@ -190,6 +190,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <p><code>d</code>是<code>deploy</code>的简写，这里部署之后远程仓库会单独跟踪页面的提交与变化，节省本地的空间）</p>
+<p>如果是<code>win10</code>系统，还需要安装模块<code>hexo-deployer-git</code>，使用<code>git bash</code>在<code>hexo</code>的部署目录使用如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p>如果在<code>nodejs</code>的目录下进行安装，则回到<code>hexo</code>目录之后会出现部署工具<code>git</code>无法识别的报错</p>
 </li>
 <li><p>在<code>gitee</code>上申请开通<code>Gitee Pages</code>服务，进入仓库后，点选上方菜单栏的”服务“-&gt;”Gitee Pages“，提交个人信息进行审核</p>
 </li>
@@ -197,6 +201,8 @@
 <p>需要注意的是点选<code>强制使用HTTPS</code>，否则会出现上一节<code>#URL</code>部分说的访问博客时URL错误的问题</p>
 </li>
 <li><p>点击<strong>更新</strong>，就能将仓库里的博客页面用于展示了，理论上每次仓库部署之后，都要<strong>再次点击更新</strong></p>
+</li>
+<li><p>需要注意的是，由于展示的是静态网页，一般会被浏览器缓存，因此博文更新后访问博客看到的不一定是最新版本，需要使用<code>F5</code>刷新，或是<code>Shift+F5</code>来强制刷新缓存。在<code>chrome</code>上一个简便的解决方法是安装扩展<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/classic-cache-killer/kkmknnnjliniefekpicbaaobdnjjikfp"><code>Classic Cache Killer</code></a>并启用，在加载页面前先清空缓存，从而每次都能看到改动</p>
 </li>
 </ol>
 <h1 id="博客创作"><a href="#博客创作" class="headerlink" title="博客创作"></a>博客创作</h1><h2 id="博文书写"><a href="#博文书写" class="headerlink" title="博文书写"></a>博文书写</h2><p>基于<code>hexo</code>框架构建的博客，博文都放在<code>source/_posts/</code>目录下，只需要按照特定的格式书写<code>markdown</code>格式的文档，就会在博客的<code>Archive</code>中自动归档并有序提供访问</p>
@@ -232,11 +238,13 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945?ops_request_misc=%7B%22request_id%22:%22163981958616780274157212%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=163981958616780274157212&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-81478945.pc_search_result_cache&utm_term=hexo+landscape+%E6%96%87%E7%AB%A0&spm=1018.2226.3001.4187">Hexo系列(五) 撰写文章</a>（这个文章系列还有对<code>hexo</code>更详细的说明）</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44052936/article/details/113748403?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163997295816780255229633%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=163997295816780255229633&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-4-113748403.pc_search_result_cache&utm_term=gitee+hexo+%E5%9B%BE%E5%BA%8A&spm=1018.2226.3001.4187">使用Gitee+PicGo搭建Hexo博客图床</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jaymie1023/article/details/105361168?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163998814716780274175270%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=163998814716780274175270&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-105361168.pc_search_result_cache&utm_term=picgo+core&spm=1018.2226.3001.4187">Typora+PicGo-core插入图片自动上传，gitee，gitgub，sm.ms三种免费图床</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/xdr630/2792202">Windows环境搭建hexo博客部署到GitHub上</a></p>
+<p><a target="_blank" rel="noopener" href="https://qing.su/article/137.html">如何彻底禁用Chrome浏览器的缓存功能</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wang-jiaxuan.gitee.io/blog/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="ckxg1wc9p000188us1twkdldb" class="article-share-link">Share</a>
+      <a data-url="https://wang-jiaxuan.gitee.io/blog/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="ckxg9kq0c0003w0usegf58jg5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/front-end/" rel="tag">front-end</a></li></ul>
