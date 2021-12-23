@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>基于gitee和Typora的图床应用 | Astartes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个需要图床(image hosting)的典型情景：在书写博文的时候，经常遇到要插入图片的情况，markdown中对图片的URL，如果只是弄一个相对路径来存放图片，不仅维护不便，而且容易出错。使用gitee等远程仓库，搭建一个图床用来存放图片，直接书写图床中的URL是更加实际的选择，使用图床工具也会让这个过程更方便">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于gitee和Typora的图床应用">
+<meta property="og:url" content="https://arstartes.github.io/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="Astartes">
+<meta property="og:description" content="一个需要图床(image hosting)的典型情景：在书写博文的时候，经常遇到要插入图片的情况，markdown中对图片的URL，如果只是弄一个相对路径来存放图片，不仅维护不便，而且容易出错。使用gitee等远程仓库，搭建一个图床用来存放图片，直接书写图床中的URL是更加实际的选择，使用图床工具也会让这个过程更方便">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/wang-jiaxuan/funpic/raw/master/13e9-irkazzv4980888.jpg">
+<meta property="article:published_time" content="2021-12-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T14:30:40.836Z">
+<meta property="article:author" content="BlaBlaWang">
+<meta property="article:tag" content="server">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wang-jiaxuan/funpic/raw/master/13e9-irkazzv4980888.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Astartes</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://arstartes.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于gitee和Typora的图床应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/" class="article-date">
+  <time datetime="2021-12-19T16:00:00.000Z" itemprop="datePublished">2021-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于gitee和Typora的图床应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/13e9-irkazzv4980888.jpg" alt="图床，顾名思义，就是存放图片的地方"></p>
+<p>一个需要<strong>图床</strong>(<code>image hosting</code>)的典型情景：在书写博文的时候，经常遇到要插入图片的情况，<code>markdown</code>中对图片的URL，如果只是弄一个相对路径来存放图片，不仅维护不便，而且容易出错。使用<code>gitee</code>等远程仓库，搭建一个图床用来存放图片，直接书写图床中的URL是更加实际的选择，使用图床工具也会让这个过程更方便</p>
+<span id="more"></span>
+
+<h1 id="远程仓库构建图床"><a href="#远程仓库构建图床" class="headerlink" title="远程仓库构建图床"></a>远程仓库构建图床</h1><p>这里，为了在大陆的访问速度，选择从<code>gitee</code>上搭建一个图床，并使用<code>markdown</code>编辑器<code>Typora</code>支持的<code>picgo</code>组件来在插入图片时自动上传图床</p>
+<ol>
+<li><p>在<code>gitee</code>上构建一个图床仓库并初始化(初始化是为了方便后面使用<code>picgo</code>测试)</p>
+</li>
+<li><p>生成私人令牌(<code>Personal Access Token</code>)，从而让图床应用可以在通过令牌更新自己的图床仓库时保护隐私。</p>
+<p>点击<code>gitee</code>页面的个人头像，选择”设置“-&gt;”私人令牌“，创建一个私人令牌来让下文的<code>picgo</code>能够访问并更新图床仓库，权限选择<code>user_info</code>和<code>projects</code>即可，要包含”查看、创建、更新你的项目“，从而不会泄漏其他信息。</p>
+<p><strong>记得保存好令牌，<code>gitee</code>这样的远程仓库生成后不会再次显示</strong></p>
+</li>
+</ol>
+<h1 id="图床应用配置"><a href="#图床应用配置" class="headerlink" title="图床应用配置"></a>图床应用配置</h1><p>诸如<code>picgo</code>这样的应用，可以自动完成向图床仓库进行提交，并获取更新后图片的URL的操作，而<code>markdown</code>编辑器<code>Typora</code>支持的<code>picgo</code>组件更是可以在插入图片时自动上传图床，让过程更加轻松</p>
+<h2 id="通用情景"><a href="#通用情景" class="headerlink" title="通用情景"></a>通用情景</h2><p>可以选择安装GUI版的<code>picgo</code>，安装<code>picgo-plugin-github-plus</code>插件并进行配置，适用于各种情景的图床上传与URL获取。具体参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44052936/article/details/113748403?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163997295816780255229633%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=163997295816780255229633&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-4-113748403.pc_search_result_cache&utm_term=gitee+hexo+%E5%9B%BE%E5%BA%8A&spm=1018.2226.3001.4187">这篇教程</a>；</p>
+<h2 id="专用于Typora"><a href="#专用于Typora" class="headerlink" title="专用于Typora"></a>专用于Typora</h2><p>背景：<code>win10</code>和<code>ubuntu</code>上的<code>markdown</code>编辑器<code>Typora</code>内置了<code>PicGo-Core(command line)</code>支持</p>
+<ol>
+<li><p>打开<code>Typora</code>的”File“-&gt;”Preferences“-&gt;”Image“，将”Image Uploader”设置为<code>PicGo-Core(command line)</code>，点击“Download or Upgrade”进行安装</p>
+</li>
+<li><p>安装后进行配置。点击“Test Uploader”测试，一开始必然失败，但会显示<code>PicGo-Core(command line)</code>的安装路径，找到并执行安装插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./picgo install smms-user</span><br><span class="line">./picgo install gitee-uploader</span><br><span class="line">./picgo install github-plus</span><br></pre></td></tr></table></figure>
+
+<p>如果是<code>win10</code>系统，这里的可执行文件要加上<code>.exe</code></p>
+</li>
+<li><p>回到<code>Typora</code>进行配置，点击步骤1的界面中的“Open Config File”，对配置文件进行修改让其能正确上传图床，如下所示：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;picBed&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;gitee&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;uploader&quot;</span>: <span class="string">&quot;gitee&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;githubPlus&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;branch&quot;</span>: <span class="string">&quot;master&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;customUrl&quot;</span>: <span class="string">&quot;https://cdn.jsdelivr.net/gh/用户名/项目名&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;img/&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;repo&quot;</span>: <span class="string">&quot;github用户名/github仓库名&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;token&quot;</span>: <span class="string">&quot;自己的token&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;gitee&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;branch&quot;</span>: <span class="string">&quot;master&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;customPath&quot;</span>: <span class="string">&quot;yearMonth&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;customUrl&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;img/&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;repo&quot;</span>: <span class="string">&quot;gitee用户名/gitee仓库名&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;token&quot;</span>: <span class="string">&quot;自己的token&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;smms-user&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;Authorization&quot;</span>: <span class="string">&quot;替换成你自己的token&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;transformer&quot;</span>: <span class="string">&quot;path&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">    <span class="attr">&quot;picgoPlugins&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;picgo-plugin-gitee-uploader&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;picgo-plugin-smms-user&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;picgo-plugin-github-plus&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于图床位于<code>gitee</code>，因此只要修改<code>gitee</code>下面的value值即可，<code>&quot;path&quot;</code>和<code>&quot;customPath&quot;</code>可以为空</p>
+<p>细心观察可以发现，<code>github</code>配置的模板也写在其中备用</p>
+</li>
+<li><p>配置完成后，可以再次尝试2中的测试，提示成功，图床中也可以看到上传的文件，将界面中的“When Insert”，也就是插入时的行为修改为“Upload Image”，下面的小选项卡可以选择“Apply above rules to local images”和“Use relative path if possible”。以后向文档中粘贴图片就会自动上传到图床，并修改URL了</p>
+</li>
+</ol>
+<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44052936/article/details/113748403?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163997295816780255229633%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=163997295816780255229633&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-4-113748403.pc_search_result_cache&utm_term=gitee+hexo+%E5%9B%BE%E5%BA%8A&spm=1018.2226.3001.4187">使用Gitee+PicGo搭建Hexo博客图床</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jaymie1023/article/details/105361168?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163998814716780274175270%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=163998814716780274175270&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-105361168.pc_search_result_cache&utm_term=picgo+core&spm=1018.2226.3001.4187">Typora+PicGo-core插入图片自动上传，gitee，gitgub，sm.ms三种免费图床</a></p>
+<h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><ul>
+<li>2021-12-23：将本部分内容从《基于hexo搭建自己的博客》中提取，解耦合，并加以完善</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://arstartes.github.io/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/" data-id="ckxj3jjx40000srsy24rx80ku" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/server/" rel="tag">server</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于hexo搭建自己的博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/19/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84N%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux系统下的N卡驱动配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/conf/" rel="tag">conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/front-end/" rel="tag">front-end</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/" rel="tag">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/conf/" style="font-size: 20px;">conf</a> <a href="/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/22/linux%20shell%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">linux shell之文件操作</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/22/linux%E4%B8%8Bwine%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">linux下wine的安装与使用</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">基于hexo搭建自己的博客</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/">基于gitee和Typora的图床应用</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84N%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%85%8D%E7%BD%AE/">Linux系统下的N卡驱动配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 BlaBlaWang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
