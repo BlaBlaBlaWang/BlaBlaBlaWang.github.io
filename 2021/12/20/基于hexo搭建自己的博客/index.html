@@ -1,97 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>基于hexo搭建自己的博客</title><meta name="description" content="May the Force be with You"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
+本文介绍使用Hexo框架快速搭建个人博客网站的方法，它通过NodeJS作为依赖，依靠简单的配置文件、提前配置好的目录结构，就能根据更新的文章，来自动生成博客网站的各个页面和超链接，并最终部署到远程服务器上供用户访问。一句话概括，就是几条指令创建自己的博客。 
 
-  
-  <title>基于hexo搭建自己的博客 | Astartes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文介绍使用Hexo框架快速搭建个人博客网站的方法，它通过NodeJS作为依赖，依靠简单的配置文件、提前配置好的目录结构，就能根据更新的文章，来自动生成博客网站的各个页面和超链接，并最终部署到远程服务器上供用户访问。一句话概括，就是几条指令创建自己的博客。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="基于hexo搭建自己的博客">
-<meta property="og:url" content="https://arstartes.github.io/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
-<meta property="og:site_name" content="Astartes">
-<meta property="og:description" content="本文介绍使用Hexo框架快速搭建个人博客网站的方法，它通过NodeJS作为依赖，依靠简单的配置文件、提前配置好的目录结构，就能根据更新的文章，来自动生成博客网站的各个页面和超链接，并最终部署到远程服务器上供用户访问。一句话概括，就是几条指令创建自己的博客。">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://gitee.com/wang-jiaxuan/funpic/raw/master/7d17ea385de717f81b86c7b8abdf13d2b40b5e2d.jpg@942w_531h_progressive.webp">
-<meta property="article:published_time" content="2021-12-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T15:04:46.929Z">
-<meta property="article:author" content="BlaBlaWang">
-<meta property="article:tag" content="front-end">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/wang-jiaxuan/funpic/raw/master/7d17ea385de717f81b86c7b8abdf13d2b40b5e2d.jpg@942w_531h_progressive.webp">
-  
-    <link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+安装NodeJS与必要的ModuleNodeJS是一个开源的javascript运行环境，它一般运行于服务器端，拥有跨平台等优点，Hexo框架想要正常运行也离不开它。
+NodeJS安装
+在NodeJS官网下载符合系统的NodeJS的安装包
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Astartes</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://arstartes.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-基于hexo搭建自己的博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2021-12-19T16:00:00.000Z" itemprop="datePublished">2021-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      基于hexo搭建自己的博客
-    </h1>
-  
+我使用的是ubuntu系统，下载后发现是.tar.xz格式，国际惯例解压它
+tar -xvf [filename] -C [decompressdir]
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/7d17ea385de717f81b86c7b8abdf13d2b40b5e2d.jpg@942w_531h_progressive.webp" alt="博客以我喜爱的星际战士命名"></p>
+相比常用的-gxvf参数，这里的压缩包格式不是.ta.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BlaBlaBlaWang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">基于hexo搭建自己的博客</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85NodeJS%E4%B8%8E%E5%BF%85%E8%A6%81%E7%9A%84Module"><span class="toc-text">安装NodeJS与必要的Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJS%E5%AE%89%E8%A3%85"><span class="toc-text">NodeJS安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm%E5%AE%89%E8%A3%85hexo"><span class="toc-text">npm安装hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%89%93%E9%80%A0%E5%8D%9A%E5%AE%A2"><span class="toc-text">框架打造博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo%E4%BD%BF%E7%94%A8"><span class="toc-text">hexo使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%88%9B%E4%BD%9C"><span class="toc-text">博客创作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E6%96%87%E4%B9%A6%E5%86%99"><span class="toc-text">博文书写</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2"><span class="toc-text">主题切换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-text">基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AAdebug%E7%9A%84%E6%95%85%E4%BA%8B"><span class="toc-text">一个debug的故事</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD"><span class="toc-text">博客其他功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%8C%BA"><span class="toc-text">评论区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="toc-text">代码高亮</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%95%99%E7%A8%8B"><span class="toc-text">参考教程</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/front-end"><i class="tag post-item-tag">front-end</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">基于hexo搭建自己的博客</h1><time class="has-text-grey" datetime="2021-12-19T16:00:00.000Z">2021-12-20</time><article class="mt-2 post-content"><p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/7d17ea385de717f81b86c7b8abdf13d2b40b5e2d.jpg@942w_531h_progressive.webp" alt="博客以我喜爱的星际战士命名"></p>
 <p>本文介绍使用<code>Hexo</code>框架快速搭建个人博客网站的方法，它通过<code>NodeJS</code>作为依赖，依靠简单的配置文件、提前配置好的目录结构，就能根据更新的文章，来自动生成博客网站的各个页面和超链接，并最终部署到远程服务器上供用户访问。一句话概括，就是<strong>几条指令创建自己的博客。</strong> </p>
 <span id="more"></span>
 
@@ -100,16 +22,17 @@
 <li><p>在<code>NodeJS</code><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">官网</a>下载符合系统的<code>NodeJS</code>的安装包</p>
 </li>
 <li><p>我使用的是<code>ubuntu</code>系统，下载后发现是<code>.tar.xz</code>格式，国际惯例解压它</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf [filename] -C [decompressdir]</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">tar -xvf [filename] -C [decompressdir]
+</code></pre>
 <p>相比常用的<code>-gxvf</code>参数，这里的压缩包格式不是<code>.tar.gz</code>，也就是并非通过<code>gzip</code>压缩得到，因此<code>-g</code>参数去掉</p>
 <p>对于<code>win10</code>系统，也可以下载可直接运行的压缩包，然后手动配置<code>PATH</code></p>
 </li>
 <li><p><code>linux</code>系统下<code>NodeJS</code>是已经安装完毕的压缩包，因此可以在<code>bin</code>目录下找到<code>node</code>和<code>npm</code>程序直接使用</p>
 <p>要想全局启用，可以修改<code>~/.bashrc</code>加入<code>export</code>语句来在终端召唤，但为了后面不直接通过<code>shell</code>来加载依赖的程序也可以使用它们，设置<strong>软链接</strong>，到系统默认的PATH之一：<code>/usr/local/bin</code>下面(安装到<code>/usr/bin</code>等目录同理)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/[decompressdir]/bin/npm   /usr/local/bin/ </span><br><span class="line">ln -s /usr/[decompressdir]/bin/node   /usr/local/bin/</span><br></pre></td></tr></table></figure>
-
-<p>一开始犯的错误是直接<code>cp [sourcefile] [destinationdir]</code>将可执行文件拷贝过去，相比软链接最大的问题是无从加载在解压目录下的动态链接库，出现类似<code> Cannot find module &#39;../lib/cli.js&#39;</code>的报错</p>
+<pre><code class="shell">ln -s /usr/[decompressdir]/bin/npm   /usr/local/bin/ 
+ln -s /usr/[decompressdir]/bin/node   /usr/local/bin/
+</code></pre>
+<p>一开始犯的错误是直接<code>cp [sourcefile] [destinationdir]</code>将可执行文件拷贝过去，相比软链接最大的问题是无从加载在解压目录下的动态链接库，出现类似<code> Cannot find module '../lib/cli.js'</code>的报错</p>
 <p>在<code>win10</code>系统下，将<code>node.exe</code>和<code>npm</code>这两个可执行文件所在的目录加入<code>PATH</code>即可，方法有两种：</p>
 <ol>
 <li>“控制面板”中搜索<code>PATH</code>，编辑系统环境变量，找到环境变量<code>Path</code>点击“编辑”，在打开的窗口中点击”新建“然后添加对应目录即可</li>
@@ -120,9 +43,13 @@
 <h2 id="npm安装hexo"><a href="#npm安装hexo" class="headerlink" title="npm安装hexo"></a>npm安装hexo</h2><p><code>npm</code>是<code>NodeJS</code>默认的包管理工具，但这里使用大陆访问更加稳定的<code>cnpm</code>，它用的是淘宝的开源镜像，通过的命令安装，<code>win10</code>和<code>linux</code>通用：</p>
 <ol>
 <li><p>使用<code>npm</code>来安装<code>cnpm</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure></li>
+<pre><code class="shell">npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre>
+</li>
 <li><p>通过<code>cnpm</code>安装<code>hexo</code>这一module</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo</span><br></pre></td></tr></table></figure></li>
+<pre><code class="shell">cnpm install hexo
+</code></pre>
+</li>
 </ol>
 <p>如果在大陆使用<code>npm</code>，这里可能会遇到很多费解的报错</p>
 <p>这里安装的过程建议在<code>nodejs</code>的目录下开启终端(<code>linux</code>)或<code>gitbash</code>(<code>win10</code>)来执行，会自动安装到目录下的<code>node_modules</code>中</p>
@@ -131,11 +58,11 @@
 <p>以下使用的指令同样是跨平台的：</p>
 <ol>
 <li><p>进入博客文件夹，初始化<code>hexo</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">hexo init
+</code></pre>
 <p>通过这一条指令，框架就将搭建，框架中经常用到的有以下这些文件：</p>
 <ul>
-<li><code>themes/</code>：用来存放自定义的主题，<code>hexo</code>的默认主题叫<code>landscape</code>，可以从<a target="_blank" rel="noopener" href="https://hexo.io/themes/">主题网站</a>找到自己喜欢的主题并配置</li>
+<li><code>themes/</code>：用来存放自定义的主题，<code>hexo</code>的默认主题叫<code>landscape</code></li>
 <li><code>_config.yml</code>：用来快速配置框架必须的参数</li>
 <li><code>source/</code>：实际存放博客文章的目录</li>
 <li><code>public/</code>：博客生成后<code>html</code>页面和有关组建的存放目录，实质上的博客根目录</li>
@@ -147,7 +74,7 @@
 </li>
 <li><p><code>#Deployment</code>：用来配置向远程仓库部署的信息</p>
 <ul>
-<li><code>type</code>：部署到远程仓库的工具，写<code>&#39;git&#39;</code></li>
+<li><code>type</code>：部署到远程仓库的工具，写<code>'git'</code></li>
 <li><code>repo</code>：远程仓库的URL，如<code>https://gitee.com/wang-jiaxuan/hhhhhh.git</code></li>
 <li><code>branch</code>：远程仓库部署的分支，如<code>master</code></li>
 </ul>
@@ -158,181 +85,95 @@
 <li><code>root</code>：这一条需要加上，是URL下根目录的地址</li>
 <li>例如：发布到<code>gitee</code>上，用户名为<code>wang-jiaxuan</code>，仓库名为<code>hhhh</code>，使用<code>Gitee Pages</code>服务来部署博客，则</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: https://wang-jiaxuan.gitee.io/hhhh</span><br><span class="line">root: /hhhh</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">url: https://wang-jiaxuan.gitee.io/hhhh
+root: /hhhh
+</code></pre>
 <p>  注意采用<code>https</code>，<code>gitee</code>默认的<code>http</code>会显示错误，页面的超链接也会指向404</p>
 <p>  （后记：自己由于没采用<code>https</code>时，点击<code>home</code>后前往的<code>http://wang-jiaxuan.gitee.io/</code>总是404，将仓库重命名为<code>wang-jiaxuan.gitee.io</code>，导致点击<code>home</code>后前往的<code>http://wang-jiaxuan.gitee.io/</code>也指向了博客发布的地址，但其他超链接指向依然错误；仓库名再次重命名之后，点击<code>home</code>似乎离奇的能正常显示，但其实显示的是<code>gitee</code>没来的及删除的页面，最后还是要用<code>https</code>，哈哈）</p>
 </li>
 </ul>
 </li>
 <li><p>清理本地环境</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo c</span><br></pre></td></tr></table></figure>
-
-<p> <code>c</code>是<code>clean</code>的简写，首次编译没有必要，之后建议加上</p>
+<pre><code class="shell">hexo c
+</code></pre>
+<p> <code>c</code>是<code>clean</code>的简写，首次编译没有必要，它会直接清除整个<code>public/</code>目录以及其他几个目录</p>
 </li>
 <li><p>编译博客网页项目</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<p> <code>g</code>是<code>generate</code>的简写</p>
+<pre><code class="shell">hexo g
+</code></pre>
+<p> <code>g</code>是<code>generate</code>的简写，会更新式地进行生成</p>
 <p> 如果对同一个<code>hexo</code>目录挂载到不同的系统下，用不同的<code>hexo</code>可执行文件来编辑，可能会重复生成<code>helloworld</code>博文并覆盖，但无伤大雅</p>
 </li>
 <li><p>运行本地的<code>hexo server</code>来预览网页</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
+<pre><code class="shell">hexo s
+</code></pre>
 <p> <code>s</code>是<code>server</code>的简写，根据控制台提示点击即可本地预览</p>
 </li>
 </ol>
 <h1 id="博客创作"><a href="#博客创作" class="headerlink" title="博客创作"></a>博客创作</h1><h2 id="博文书写"><a href="#博文书写" class="headerlink" title="博文书写"></a>博文书写</h2><p>基于<code>hexo</code>框架构建的博客，博文都放在<code>source/_posts/</code>目录下，只需要按照特定的格式书写<code>markdown</code>格式的文档，就会在博客的<code>Archive</code>中自动归档并有序提供访问</p>
 <p>这里用一个例子来说明，加<code>#</code>的文字内容为说明：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World	#在博客里显示的标题</span><br><span class="line">date: 2020-01-01	#按照时间归档的Archive导航栏依据</span><br><span class="line">tags: lab	#按照tag归档的导航栏依据</span><br><span class="line">---</span><br><span class="line">#这里书写的摘要内容可以在主页预览到</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">#这里书写的详细内容在主页需要点开才能看到</span><br></pre></td></tr></table></figure>
-
+<pre><code>---
+title: Hello World    #在博客里显示的标题
+date: 2020-01-01    #按照时间归档的Archive导航栏依据
+tags: lab    #按照tag归档的导航栏依据
+---
+#这里书写的摘要内容可以在主页预览到
+&lt;!--more--&gt;
+#这里书写的详细内容在主页需要点开才能看到
+</code></pre>
 <p>需要注意的是，这个模板适用于默认的<code>landscape</code>主题，其他的主题可能有自己自定义的模板，需要参考文档说明，或是找到<code>scaffolds/post.md</code>这一模板文件</p>
-<p>据说<code>hexo new &quot;title&quot;</code>也可以根据上面提到的模板创建新的博文，但在<code>ubuntu</code>上不常用，<code>ubuntu</code>可以考虑在<code>~/Templates</code>里面书写博文的模板，以后就可以右键直接<code>New</code>找到模板使用</p>
+<p>据说<code>hexo new "title"</code>也可以根据上面提到的模板创建新的博文，但在<code>ubuntu</code>上不常用，<code>ubuntu</code>可以考虑在<code>~/Templates</code>里面书写博文的模板，以后就可以右键直接<code>New</code>找到模板使用</p>
+<h1 id="主题切换"><a href="#主题切换" class="headerlink" title="主题切换"></a>主题切换</h1><h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><p>在<code>hexo</code>框架下有很多用户开发的主题，可以从<a target="_blank" rel="noopener" href="https://hexo.io/themes/">主题网站</a>找到自己喜欢的主题并配置</p>
+<ol>
+<li>找到对应主题的<code>repo</code>，下载主题的源码，解压后放在<code>hexo</code>项目的<code>themes</code>目录下，源码之上仅保留一层目录，不要套娃</li>
+<li>打开<code>hexo</code>项目的<code>_config.yml</code>配置文件，修改其中的<code>themes</code>字段，和主题的文件夹同名</li>
+<li>按照主题的<code>README.md</code>里面的说明安装依赖，并配置<strong>主题</strong>的<code>_config.yml</code>配置文件来自定义网站</li>
+</ol>
+<h2 id="一个debug的故事"><a href="#一个debug的故事" class="headerlink" title="一个debug的故事"></a>一个debug的故事</h2><p>在安装美观又功能强大的<code>Claudia</code>主题的时候，遇到了不小的问题：</p>
+<p>该主题需要一个名为<code>hexo-renderer-sass</code>的依赖，这个依赖的安装遇到了不知名的错误</p>
+<ol>
+<li><p>需要安装过程的具体日志内容，来让报错具体化，对<code>npm</code>的安装加上<code>--verbose</code>的选项来显示细节</p>
+</li>
+<li><p>看到细节后，发现停在一处安装，怀疑是网络问题，将<code>npm</code>的默认镜像源如同<code>cnpm</code>一样改成淘宝：</p>
+<pre><code class="shell">npm config set registry http://registry.npm.taobao.org/
+</code></pre>
+<p>然后可以查看确认：</p>
+<pre><code class="shell">npm get registry
+</code></pre>
+<p>这期间也可以考虑直接从<code>github</code>下载：</p>
+<pre><code class="shell">npm install git+https://github.com/[username]/[repo].git
+</code></pre>
+<p> 修改源后发现仍不行，说明下载依赖的源码没有问题，后面的安装出现了问题，因此先恢复默认的源：</p>
+<pre><code class="shell">npm config set registryhttps://registry.npmjs.org
+</code></pre>
+</li>
+<li><p>分析之前停顿的安装，发现这里通过<code>npm</code>的构建工具<code>gyp</code>对<code>hexo-renderer-sass</code>的一个依赖调用各种<code>build</code>工具进行了构建。本身构建需要时间，而构建最后还遭遇了失败，因此分析失败的原因，<code>warning</code>不要紧，关注出现<code>error</code>的地方，：</p>
+<p> 在失败后构建的细节才得以输出，发现一处<code>STL</code>标准库兼容的问题：<code>error: ‘remove_cv_t’ is not a member of ‘std’; did you mean ‘remove_cv’?</code></p>
+<p>观察出现<code>error</code>的地方，是设备中之前安装的<code>gyp</code>的一个头文件，备份后直接修改这个头文件，按照上面<code>error</code>的提示改成兼容的样式，再次构建取得成功！</p>
+</li>
+</ol>
+<p>这个故事告诉我们，配环境的<code>debug</code>需要输出日志具体信息，还要敢于修改</p>
+<h1 id="博客其他功能"><a href="#博客其他功能" class="headerlink" title="博客其他功能"></a>博客其他功能</h1><h2 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://utteranc.es/?installation_id=21630894&amp;setup_action=install"><code>utterances</code></a></p>
+<p>已经被<code>github</code>广泛支持的第三方应用，使用<code>github</code>帐号授权就可以使用，而作为后端管理，可以将这个应用安装到自己的<code>repo</code></p>
+<p>亮点在于，用户进行评论的同时，可以将评论转换成<code>issue</code>，并发布到托管网页对应的仓库</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://valine.js.org/"><code>Valine</code></a></p>
+<p>一款没有后端的评论软件，支持<code>hexo</code>等多种框架，也可以匿名评论，但是管理有一点麻烦</p>
+</li>
+</ul>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><ul>
+<li><p><code>hexo-generator-search</code></p>
+<p>一个<code>nodejs</code>模块，可以支持博客的全文搜索，在<code>hexo</code>下一个小小的缺点是无法搜索写在<code>title</code>的标题</p>
+</li>
+</ul>
+<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>将项目目录下的<code>_config.yml</code>中<code>highlight</code>和<code>prismjs</code>的<code>enable</code>都调为<code>false</code>，剩下的交给浏览器，效果就很不错</p>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/nodejs/nodejs-install-setup.html">Node.js 安装配置</a></p>
 <p><a target="_blank" rel="noopener" href="https://xiuxiuing.gitee.io/blog/2018/08/08/giteepage/#4-%E5%8F%91%E5%B8%83%E5%88%B0Gitee">使用Gitee+Hexo搭建个人博客</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945?ops_request_misc=%7B%22request_id%22:%22163981958616780274157212%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=163981958616780274157212&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-81478945.pc_search_result_cache&utm_term=hexo+landscape+%E6%96%87%E7%AB%A0&spm=1018.2226.3001.4187">Hexo系列(五) 撰写文章</a>（这个文章系列还有对<code>hexo</code>更详细的说明）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945?ops_request_misc=%7B%22request_id%22:%22163981958616780274157212%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&amp;request_id=163981958616780274157212&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-81478945.pc_search_result_cache&amp;utm_term=hexo+landscape+%E6%96%87%E7%AB%A0&amp;spm=1018.2226.3001.4187">Hexo系列(五) 撰写文章</a>（这个文章系列还有对<code>hexo</code>更详细的说明）</p>
 <p><a target="_blank" rel="noopener" href="https://blog.51cto.com/xdr630/2792202">Windows环境搭建hexo博客部署到GitHub上</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://arstartes.github.io/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="ckxj1bieo0009hmsy5egu7vfl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/front-end/" rel="tag">front-end</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/12/22/linux%E4%B8%8Bwine%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          linux下wine的安装与使用
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">基于gitee和Typora的图床应用</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/conf/" rel="tag">conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/front-end/" rel="tag">front-end</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/" rel="tag">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/conf/" style="font-size: 20px;">conf</a> <a href="/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/12/22/linux%20shell%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">linux shell之文件操作</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/22/linux%E4%B8%8Bwine%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">linux下wine的安装与使用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">基于hexo搭建自己的博客</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/">基于gitee和Typora的图床应用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/19/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84N%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%85%8D%E7%BD%AE/">Linux系统下的N卡驱动配置</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2021 BlaBlaWang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17509669/how-to-install-an-npm-package-from-github-directly">How to install an npm package from GitHub directly</a></p>
+<p><a target="_blank" rel="noopener" href="https://utteranc.es/?installation_id=21630894&amp;setup_action=install">utterances</a></p>
+<p><a target="_blank" rel="noopener" href="https://valine.js.org/">Valine</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/syntax-highlight.html">代码高亮|Hexo</a></p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2021/12/20/%E5%9F%BA%E4%BA%8Egitee%E5%92%8CTypora%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BA%94%E7%94%A8/" title="基于gitee和Typora的图床应用"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 基于gitee和Typora的图床应用</span></a><a class="button is-default" href="/2021/12/19/Linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84N%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%85%8D%E7%BD%AE/" title="Linux系统下的N卡驱动配置"><span class="has-text-weight-semibold">Next: Linux系统下的N卡驱动配置</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

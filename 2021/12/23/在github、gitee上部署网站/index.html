@@ -1,0 +1,80 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>在github、gitee上部署网站</title><meta name="description" content="May the Force be with You"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
+针对常见的远程仓库：github和gitee，它们都提供了Pages服务，可以通过建立WEB页面的仓库，并在其中存放网页的有关元素，通过服务端的处理与域名分配，成为人们可以访问的公共页面，简而言之，就是用别人的服务器和域名托管并展示自己的网站，本文选取的案例是基于hexo框架的博客部署
+
+
+仓库建立与部署首先，要在远程仓库网址上建立部署页面的仓库，并选用git等工具进行推送
+
+国际惯例，创建git仓库，地址添加到本地仓库的remote
+
+如果使用github部署网站，建议将仓库命名为[username].github.io
+
+本文使用了hexo框架搭建网站，需要将git仓库的地址与对应分支填到_config.yml配置文件的#Deployment配置中
+
+
+
+在本地编译完成后，利用hexo将博客根目录下的.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BlaBlaBlaWang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">在github、gitee上部署网站</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E5%BB%BA%E7%AB%8B%E4%B8%8E%E9%83%A8%E7%BD%B2"><span class="toc-text">仓库建立与部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0gitee"><span class="toc-text">发布到gitee</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0github"><span class="toc-text">发布到github</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%95%99%E7%A8%8B"><span class="toc-text">参考教程</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/server"><i class="tag post-item-tag">server</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">在github、gitee上部署网站</h1><time class="has-text-grey" datetime="2021-12-22T16:00:00.000Z">2021-12-23</time><article class="mt-2 post-content"><p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/image-20211224230053576.png" alt="image-20211224230053576"></p>
+<p>针对常见的远程仓库：<code>github</code>和<code>gitee</code>，它们都提供了<code>Pages</code>服务，可以通过建立<code>WEB</code>页面的仓库，并在其中存放网页的有关元素，通过服务端的处理与域名分配，成为人们可以访问的公共页面，简而言之，就是<strong>用别人的服务器和域名托管并展示自己的网站</strong>，本文选取的案例是基于<code>hexo</code>框架的博客部署</p>
+<span id="more"></span>
+
+<h1 id="仓库建立与部署"><a href="#仓库建立与部署" class="headerlink" title="仓库建立与部署"></a>仓库建立与部署</h1><p>首先，要在远程仓库网址上建立部署页面的仓库，并选用<code>git</code>等工具进行推送</p>
+<ol>
+<li><p>国际惯例，创建git仓库，地址添加到本地仓库的<code>remote</code></p>
+<ul>
+<li><p>如果使用<code>github</code>部署网站，建议将仓库命名为<code>[username].github.io</code></p>
+</li>
+<li><p>本文使用了<code>hexo</code>框架搭建网站，需要将git仓库的地址与对应分支填到<code>_config.yml</code>配置文件的<code>#Deployment</code>配置中</p>
+</li>
+</ul>
+</li>
+<li><p>在本地编译完成后，利用<code>hexo</code>将博客根目录下的文件部署到远程仓库</p>
+<pre><code class="shell">hexo d
+</code></pre>
+<p><code>d</code>是<code>deploy</code>的简写，这里部署之后远程仓库会单独跟踪页面的提交与变化，节省本地的空间）</p>
+<p>如果是<code>win10</code>系统，还需要安装模块<code>hexo-deployer-git</code>，使用<code>git bash</code>在<code>hexo</code>的部署目录使用如下命令：</p>
+<pre><code class="shell">cnpm install --save hexo-deployer-git
+</code></pre>
+<p>此时，如果在<code>nodejs</code>的目录下进行安装，则回到<code>hexo</code>目录之后会出现部署工具<code>git</code>无法识别的报错</p>
+</li>
+<li><p>使用<code>hexo</code>部署的过程中，部署<code>d</code>只会提交<code>public/</code>目录下的改动，如果想保留<code>README.md</code>这一框架不会自动生成的内容，有两种方法：</p>
+<ol>
+<li>慎用<code>hexo clean</code>，直接将<code>README.md</code>放入<code>public/</code> 目录</li>
+<li>参考<a target="_blank" rel="noopener" href="https://gk4030.github.io/2019/07/21/hexo%E4%BF%9D%E7%95%99README-md%E4%B9%8B%E8%AE%BE%E7%BD%AEskip-render/">这篇教程</a>，设置<code>skip_render</code>，较为麻烦</li>
+</ol>
+</li>
+<li><p>针对更一般的情景，可以直接在网站的根目录下初始化<code>git</code>仓库并提交到远程仓库</p>
+</li>
+</ol>
+<h1 id="发布到gitee"><a href="#发布到gitee" class="headerlink" title="发布到gitee"></a>发布到gitee</h1><ol>
+<li><p>在<code>gitee</code>上申请开通<code>Gitee Pages</code>服务，进入仓库后，点选上方菜单栏的”服务“-&gt;”Gitee Pages“，提交个人信息进行审核</p>
+<p>这里的实名认证很不方便，经过比较之后我更推荐灵活好用的<code>github</code>，而且<code>.github.io</code>域名的网址在大陆访问同样迅速</p>
+</li>
+<li><p>审核通过后，选择部署分支(这里的服务直接和仓库对应)，部署目录可以为空，这样仓库里的所有页面和文件都可以用于博客提供访问</p>
+<p>需要注意的是点选<code>强制使用HTTPS</code>，否则会出现上一节<code>#URL</code>部分说的访问博客时URL错误的问题</p>
+</li>
+<li><p>点击<strong>更新</strong>，就能将仓库里的博客页面用于展示了，<code>gitee</code>也会提供URL。</p>
+<p>理论上每次仓库部署之后，都要<strong>再次点击更新</strong></p>
+</li>
+<li><p>需要注意的是，由于展示的是静态网页，一般会被浏览器缓存，因此博文更新后访问博客看到的不一定是最新版本，需要使用<code>F5</code>刷新，或是<code>Shift+F5</code>来强制刷新缓存。在<code>chrome</code>上一个简便的解决方法是安装扩展<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/classic-cache-killer/kkmknnnjliniefekpicbaaobdnjjikfp"><code>Classic Cache Killer</code></a>并启用，在加载页面前先清空缓存，从而每次都能看到改动</p>
+</li>
+</ol>
+<h1 id="发布到github"><a href="#发布到github" class="headerlink" title="发布到github"></a>发布到github</h1><ol>
+<li><p><code>github</code>上的<code>Pages</code>服务开通非常方便，前提是建立了名为<code>[username].github.io</code>的仓库，而且这个仓库的可见性为<code>public</code></p>
+<p>如果想要使用其他的域名来访问个人博客，或者建立其他名字的仓库来部署网站，可以使用<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages.html">这篇教程</a>里的工具</p>
+</li>
+<li><p>仓库部署网页完毕后，可以在仓库的<code>Settings-&gt;Pages</code>里面看到开通<code>Pages</code>服务的有关说明，如果使用步骤1的仓库名，就可以直接在URL进行访问</p>
+<p>一些额外的工作是选择<code>Source</code>，也就是网页根目录来自仓库的哪个分支</p>
+</li>
+<li><p>还可以自定义域名、主题和<code>https</code>选项，在步骤1的前提下这些都可以保留默认了</p>
+</li>
+</ol>
+<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a target="_blank" rel="noopener" href="https://xiuxiuing.gitee.io/blog/2018/08/08/giteepage/#4-%E5%8F%91%E5%B8%83%E5%88%B0Gitee">使用Gitee+Hexo搭建个人博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/xdr630/2792202">Windows环境搭建hexo博客部署到GitHub上</a></p>
+<p><a target="_blank" rel="noopener" href="https://qing.su/article/137.html">如何彻底禁用Chrome浏览器的缓存功能</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/en/pages/quickstart">Quickstart for GitHub Pages</a></p>
+<p><a target="_blank" rel="noopener" href="https://gk4030.github.io/2019/07/21/hexo%E4%BF%9D%E7%95%99README-md%E4%B9%8B%E8%AE%BE%E7%BD%AEskip-render/">hexo保留README.md之设置skip_render</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages.html">将 Hexo 部署到 GitHub Pages</a></p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2021/12/22/linux%20shell%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="linux shell之文件操作"><span class="has-text-weight-semibold">Next: linux shell之文件操作</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
