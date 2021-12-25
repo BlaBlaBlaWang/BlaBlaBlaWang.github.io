@@ -155,8 +155,12 @@ tags: lab    #按照tag归档的导航栏依据
 <p>这个故事告诉我们，配环境的<code>debug</code>需要输出日志具体信息，还要敢于修改</p>
 <h1 id="博客其他功能"><a href="#博客其他功能" class="headerlink" title="博客其他功能"></a>博客其他功能</h1><h2 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h2><ul>
 <li><p><a target="_blank" rel="noopener" href="https://utteranc.es/?installation_id=21630894&amp;setup_action=install"><code>utterances</code></a></p>
-<p>已经被<code>github</code>广泛支持的第三方应用，使用<code>github</code>帐号授权就可以使用，而作为后端管理，可以将这个应用安装到自己的<code>repo</code></p>
-<p>亮点在于，用户进行评论的同时，可以将评论转换成<code>issue</code>，并发布到托管网页对应的仓库</p>
+<ul>
+<li>已经被<code>github</code>广泛支持的第三方应用，使用<code>github</code>帐号授权就可以使用，而作为后端管理，可以将这个应用安装到自己的<code>repo</code></li>
+<li>亮点在于，用户进行评论的同时，可以将评论转换成<code>issue</code>，并发布到托管网页对应的仓库，<strong>对应文章的评论区会和<code>issue</code>同步</strong></li>
+<li>默认实现是先扫描是否有同名的<code>issue</code>，以追加的方式进行评论，不论是否<code>closed</code>。因此建议将不用的<code>issue</code>直接右下角<code>delete</code></li>
+<li>如果要进行配置，可以通过<a target="_blank" rel="noopener" href="https://utteranc.es/?installation_id=21630894&amp;setup_action=install">官方教程</a>，直接在该页面的选择框内点选，然后将下方的<code>scripts</code>放到网站的模板里，比如修改<code>hexo</code>主题下的<code>layout/</code>目录中的<code>post.pug</code>，就可以在框架生成的每一个博文的页面下面都启动配置好的评论区</li>
+</ul>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://valine.js.org/"><code>Valine</code></a></p>
 <p>一款没有后端的评论软件，支持<code>hexo</code>等多种框架，也可以匿名评论，但是管理有一点麻烦</p>
