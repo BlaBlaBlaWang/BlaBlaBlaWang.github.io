@@ -106,10 +106,11 @@ root: /hhhh
 <p> <code>g</code>是<code>generate</code>的简写，会更新式地进行生成</p>
 <p> 如果对同一个<code>hexo</code>目录挂载到不同的系统下，用不同的<code>hexo</code>可执行文件来编辑，可能会重复生成<code>helloworld</code>博文并覆盖，但无伤大雅</p>
 </li>
-<li><p>运行本地的<code>hexo server</code>来预览网页</p>
+<li><p>运行本地的<code>hexo server</code>来预览网页，实质上是开启博客网站的服务器</p>
 <pre><code class="shell">hexo s
 </code></pre>
-<p> <code>s</code>是<code>server</code>的简写，根据控制台提示点击即可本地预览</p>
+<p> <code>s</code>是<code>server</code>的简写，根据控制台提示点击即可本地预览，或者通过提示的端口在其他设备访问</p>
+<p> 如果在有域名/公网IP的服务器上运行，到这里博客服务器就正式启动了</p>
 </li>
 </ol>
 <h1 id="博客创作"><a href="#博客创作" class="headerlink" title="博客创作"></a>博客创作</h1><h2 id="博文书写"><a href="#博文书写" class="headerlink" title="博文书写"></a>博文书写</h2><p>基于<code>hexo</code>框架构建的博客，博文都放在<code>source/_posts/</code>目录下，只需要按照特定的格式书写<code>markdown</code>格式的文档，就会在博客的<code>Archive</code>中自动归档并有序提供访问</p>

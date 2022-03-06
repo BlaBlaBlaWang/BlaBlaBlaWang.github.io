@@ -1,0 +1,60 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>光电鼠标的工作原理</title><meta name="description" content="May the Force be with You"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
+使用鼠标来同电脑交互的过程中，从移动鼠标到指针移动，中间发生了哪些细节？鼠标的参数在怎样发挥作用？下文将进行简要的说明。
+
+
+鼠标原理
+以光电鼠标为例，按照一定的**(采样)频率**，对所在平面进行采样
+鼠标底部的发光二极管等光源发出光线，经过透镜照射到鼠标放置的平面上，并在反射后通过透镜到达鼠标内的光电二极管等光电传感器
+平面细微的凹凸带来不同的明暗程度，因而平面反射的光被处理成一定尺寸的像素矩阵
+鼠标的传感器具有一定的分辨率，表示像素矩阵的精细程度，一般用后面的DPI参数进行说明
+
+
+像素矩阵被DSP(Digital Signal Processor)进行处理
+DSP分析两次采样之间的像素矩阵的差别，进行相关计算，找到差别最小的方向，得到鼠标在两次采样之间的移动方向
+DSP在分析多次采样之后，积累到达.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BlaBlaBlaWang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">光电鼠标的工作原理</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%8E%9F%E7%90%86"><span class="toc-text">鼠标原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0"><span class="toc-text">常见参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%88%AB%E5%9C%B0"><span class="toc-text">特别地</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/hardware"><i class="tag post-item-tag">hardware</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">光电鼠标的工作原理</h1><time class="has-text-grey" datetime="2022-01-29T16:00:00.000Z">2022-01-30</time><article class="mt-2 post-content"><p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/Logitech-G502-HERO-featured-image.jpg" alt="光电鼠标的工作原理"></p>
+<p>使用鼠标来同电脑交互的过程中，从移动鼠标到指针移动，中间发生了哪些细节？鼠标的参数在怎样发挥作用？下文将进行简要的说明。</p>
+<span id="more"></span>
+
+<h1 id="鼠标原理"><a href="#鼠标原理" class="headerlink" title="鼠标原理"></a>鼠标原理</h1><ol>
+<li>以光电鼠标为例，按照一定的**(采样)频率**，对所在平面进行采样<ol>
+<li>鼠标底部的发光二极管等光源发出光线，经过透镜照射到鼠标放置的平面上，并在反射后通过透镜到达鼠标内的光电二极管等光电传感器</li>
+<li>平面细微的凹凸带来不同的明暗程度，因而平面反射的光被处理成一定尺寸的<strong>像素矩阵</strong></li>
+<li>鼠标的传感器具有一定的<strong>分辨率</strong>，表示像素矩阵的精细程度，一般用后面的DPI参数进行说明</li>
+</ol>
+</li>
+<li>像素矩阵被<code>DSP</code>(Digital Signal Processor)进行处理<ol>
+<li>DSP分析两次采样之间的像素矩阵的差别，进行<strong>相关计算</strong>，找到差别最小的方向，得到鼠标在两次采样之间的移动方向</li>
+<li>DSP在分析多次采样之后，积累到达<strong>报告速率</strong>所需的时间，将多次移动方向合成的方向报告给主机</li>
+</ol>
+</li>
+<li>鼠标具有一定的<code>DPI</code>(Dots Per Inch)指标，决定了在屏幕上移动指针的效果<ol>
+<li>该参数表示鼠标移动1英寸后可以在屏幕上移动多少点，传感器分辨率越高，DPI一般也就越高</li>
+<li>鼠标的像素矩阵越精细，要铺满一英寸的距离，像素矩阵所要移动的步数就越多</li>
+<li>这样的轨迹和部署被报告给主机，主机经过处理后将鼠标的运动映射为指针的运动，因而DPI决定了鼠标的精度和速度</li>
+</ol>
+</li>
+</ol>
+<h1 id="常见参数"><a href="#常见参数" class="headerlink" title="常见参数"></a>常见参数</h1><ul>
+<li><p>频率</p>
+</li>
+<li><p>分辨率</p>
+</li>
+<li><p>DPI</p>
+</li>
+<li><p>报告速率</p>
+</li>
+<li><p><code>IPS</code>(Inches Per Second)：电竞鼠标常用，它代表了鼠标能识别的最大速度，如果DPI很高而手速过快，就需要足够高的IPS才能正确识别鼠标的移动</p>
+</li>
+</ul>
+<h1 id="特别地"><a href="#特别地" class="headerlink" title="特别地"></a>特别地</h1><p>玩家一般比较关心鼠标的灵敏度，调节有两种常见的方式：</p>
+<ul>
+<li><p>DPI调节按键：一般是通过DSP在像素矩阵中采样并插值，来实现提高鼠标DPI的效果，线性插值精度就比较可观</p>
+</li>
+<li><p>操作系统调节的鼠标灵敏度：一般是在鼠标的点映射到屏幕上的点时，选择忽略一些屏幕上的点来提高指针速度，但损失了精度</p>
+</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/01/30/%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%B7%A5%E5%85%B7Tmux%E4%BD%BF%E7%94%A8/" title="终端复用工具-以Tmux为例"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 终端复用工具-以Tmux为例</span></a><a class="button is-default" href="/2022/01/28/%E8%B0%81%E6%B1%A1%E6%9F%93%E4%BA%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E5%86%85%E5%AE%B9%EF%BC%9F%E8%90%A5%E9%94%80%E5%8F%B7%E4%B8%8E%E5%9E%83%E5%9C%BE%E7%AB%99%E7%82%B9%E7%9A%84%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/" title="谁污染了你的网络内容？营销号与垃圾站点的千层套路"><span class="has-text-weight-semibold">Next: 谁污染了你的网络内容？营销号与垃圾站点的千层套路</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="title" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/da-xuan-90-35"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

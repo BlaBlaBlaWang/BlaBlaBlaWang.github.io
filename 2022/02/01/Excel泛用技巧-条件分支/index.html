@@ -1,0 +1,56 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Excel泛用技巧-条件分支</title><meta name="description" content="May the Force be with You"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
+Excel中有诸多带有条件控制功能的函数，正确使用这些函数，就能在偶尔使用excel进行数据管理与分析时实现简单的分支流程控制，将POP(Procedure Oriented Programming)(面向过程编程)的思想应用进来，而循环等流程可以使用填充柄来应急
+
+
+标准式
+英文名：criteria
+奥义：与excel中value的概念互通，可以作为参数，将数值、字符串、表达式、单元格引用、函数等众多类型的元素传递给函数
+常见的criteria：
+&quot;hello中国&quot;：字符串hello中国，支持中文字符
+&quot;&quot;：空值
+&quot;&amp;lt;&amp;gt;&quot;：非空值
+&quot;&amp;lt;&amp;gt;&quot;&quot;&quot;：任何值
+
+
+
+IF函数IF函数的作用是：对一个单元格要显示的value，通过判断逻辑表达式的真假来选择，从而实现条件控制的value显示.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BlaBlaBlaWang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Excel泛用技巧-条件分支</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%BC%8F"><span class="toc-text">标准式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IF%E5%87%BD%E6%95%B0"><span class="toc-text">IF函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#COUNTIF%E5%87%BD%E6%95%B0"><span class="toc-text">COUNTIF函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SUMIF%E5%87%BD%E6%95%B0"><span class="toc-text">SUMIF函数</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/office"><i class="tag post-item-tag">office</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Excel泛用技巧-条件分支</h1><time class="has-text-grey" datetime="2022-01-31T16:00:00.000Z">2022-02-01</time><article class="mt-2 post-content"><p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/30.Jan.2022.png" alt="Excel泛用技巧-条件分支"></p>
+<p>Excel中有诸多带有条件控制功能的函数，正确使用这些函数，就能在偶尔使用excel进行数据管理与分析时实现简单的分支流程控制，将<code>POP</code>(Procedure Oriented Programming)(面向过程编程)的思想应用进来，而循环等流程可以使用填充柄来应急</p>
+<span id="more"></span>
+
+<h1 id="标准式"><a href="#标准式" class="headerlink" title="标准式"></a>标准式</h1><ul>
+<li>英文名：<code>criteria</code></li>
+<li><strong>奥义</strong>：与excel中value的概念互通，可以作为参数，将数值、字符串、表达式、单元格引用、函数等众多类型的元素传递给函数</li>
+<li>常见的criteria：<ul>
+<li><code>"hello中国"</code>：字符串<code>hello中国</code>，支持中文字符</li>
+<li><code>""</code>：空值</li>
+<li><code>"&lt;&gt;"</code>：非空值</li>
+<li><code>"&lt;&gt;"""</code>：任何值</li>
+</ul>
+</li>
+</ul>
+<h1 id="IF函数"><a href="#IF函数" class="headerlink" title="IF函数"></a>IF函数</h1><p><code>IF</code>函数的作用是：对一个单元格要显示的value，通过判断逻辑表达式的真假来选择，从而实现条件控制的value显示</p>
+<ul>
+<li>函数“原型”：<code>IF(logical_test,value_if_true,value_if_false)</code></li>
+<li>参数1是逻辑表达式，这里的相等运算符只需要一个<code>=</code>，特别地，如果</li>
+<li>参数2和参数3都可以用criteria填充，表示逻辑表达式分别为真为假时单元格显示的值</li>
+</ul>
+<h1 id="COUNTIF函数"><a href="#COUNTIF函数" class="headerlink" title="COUNTIF函数"></a>COUNTIF函数</h1><p><code>COUNTIF</code>函数是一个典型的扩展IF函数，它相比原先的<code>COUNT</code>函数加入了条件控制的能力</p>
+<ul>
+<li>函数原型：<code>countif（range，criteria）</code></li>
+<li><strong>奥义</strong>：扩展IF函数中的criteria，表示相比原本的函数，现在只对满足(等于)criteria的单元格进行操作</li>
+<li>参考上面的奥义，COUNTIF函数只计数range中满足criteria的单元格个数</li>
+</ul>
+<h1 id="SUMIF函数"><a href="#SUMIF函数" class="headerlink" title="SUMIF函数"></a>SUMIF函数</h1><p><code>SUMIF</code>函数作为一个稍复杂的扩展IF函数，来进一步说明这类函数的使用规律</p>
+<ul>
+<li>函数原型：<code>SUMIF(range, criteria, [sum_range])</code></li>
+<li>参数3可选，一般与参数1的个数对应，没有参数3则求和参数1中符合criteria的value；反之则对参数3求和。<ul>
+<li>存在参数3时，参数1和3相当于key-value的关系</li>
+</ul>
+</li>
+<li>参考上面的奥义，SUMIF函数只针对参数1中满足criteria的单元格，根据参数3的有无进行求和</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/02/03/SSD%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%A3%85%E6%9C%BA%E5%88%9D%E6%AD%A5/" title="SSD相关基础知识与装机初步"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: SSD相关基础知识与装机初步</span></a><a class="button is-default" href="/2022/01/31/Potpourri-Jan.2022/" title="Potpourri-Jan.2022"><span class="has-text-weight-semibold">Next: Potpourri-Jan.2022</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="title" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/da-xuan-90-35"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

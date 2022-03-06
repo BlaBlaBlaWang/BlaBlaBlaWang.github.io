@@ -1,0 +1,165 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>SSD相关基础知识与装机初步</title><meta name="description" content="May the Force be with You"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
+固态硬盘SSD的英文全称是Solid State Drive，它使用了闪存作为存储介质，取代了传统的机械硬盘HDD(Hard Disk Drive)的磁盘寻道方式，在诸多方面都有了显著的提升，是现在最流行的存储介质之一，本文简要介绍SSD的基本原理与相关的接口知识。
+
+
+常用术语
+Host Page
+主机页，主机在向存储设备发出读写请求时，以主机页为抽象单位，它和设备具体采用的存储介质无关，一般为512B的大小
+
+Physical Page
+物理页，存储设备收到主机请求后，看待设备上存储介质的基本单位，单位之下的存储介质可能是磁盘扇区，也可能是闪存颗粒，一般与主机页大小对应
+
+LBA：Logical Block Address
+逻辑块地址，主机在存储设备上寻址使用的抽象地址，它的地址空间往往是线性的
+
+C.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Astartes" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BlaBlaBlaWang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">SSD相关基础知识与装机初步</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a target="_blank" rel="noopener" href="https://github.com/BlaBlaBlaWang/BlaBlaBlaWang.github.io">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD"><span class="toc-text">常用术语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSD%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">SSD基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">硬件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="toc-text">部件简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AA%E5%AD%98%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A"><span class="toc-text">闪存自底向上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%A0%E5%B0%84%E8%A1%A8"><span class="toc-text">映射表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-text">SSD运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99"><span class="toc-text">读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%A6%E9%99%A4%E4%B8%8E%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">擦除与垃圾回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AF%BF%E5%91%BD"><span class="toc-text">使用寿命</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSD%E8%A3%85%E6%9C%BA"><span class="toc-text">SSD装机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8D%8F%E8%AE%AE"><span class="toc-text">常用接口与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF"><span class="toc-text">总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3"><span class="toc-text">硬件接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E5%8F%96%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">选取与安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%95%99%E7%A8%8B"><span class="toc-text">参考教程</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/hardware"><i class="tag post-item-tag">hardware</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">SSD相关基础知识与装机初步</h1><time class="has-text-grey" datetime="2022-02-02T16:00:00.000Z">2022-02-03</time><article class="mt-2 post-content"><p><img src="https://gitee.com/wang-jiaxuan/funpic/raw/master/SSD%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%A3%85%E6%9C%BA%E5%88%9D%E6%AD%A5.jpg" alt="Potpourri-02.Feb.2022"></p>
+<p>固态硬盘<code>SSD</code>的英文全称是Solid State Drive，它使用了闪存作为存储介质，取代了传统的机械硬盘<code>HDD</code>(Hard Disk Drive)的磁盘寻道方式，在诸多方面都有了显著的提升，是现在最流行的存储介质之一，本文简要介绍SSD的基本原理与相关的接口知识。</p>
+<span id="more"></span>
+
+<h1 id="常用术语"><a href="#常用术语" class="headerlink" title="常用术语"></a>常用术语</h1><ul>
+<li><p><code>Host Page</code></p>
+<p>主机页，主机在向存储设备发出读写请求时，以主机页为抽象单位，它和设备具体采用的存储介质无关，一般为512B的大小</p>
+</li>
+<li><p><code>Physical Page</code></p>
+<p>物理页，存储设备收到主机请求后，看待设备上存储介质的基本单位，单位之下的存储介质可能是磁盘扇区，也可能是闪存颗粒，一般与主机页大小对应</p>
+</li>
+<li><p><code>LBA</code>：Logical Block Address</p>
+<p>逻辑块地址，主机在存储设备上寻址使用的抽象地址，它的地址空间往往是线性的</p>
+</li>
+<li><p><code>CHS</code>：Cylinders-Heads-Sectors</p>
+<p>柱面-磁头-扇区地址，传统的HDD的控制器在内部寻址时，需要将LBA转换成这样的多维地址才能定位到物理页所在的扇区，<code>#lba=(#c*H+#h)*S+#s-1</code>，而SSD可能采用<code>(block, page)</code>这样更为简单的寻址方法</p>
+</li>
+</ul>
+<h1 id="SSD基础知识"><a href="#SSD基础知识" class="headerlink" title="SSD基础知识"></a>SSD基础知识</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>SSD是将闪存作为主要存储介质的一种存储设备，按照闪存内部存储单元的不同分为四类：</p>
+<ul>
+<li><code>SLC</code>：Single-Level Cell</li>
+<li><code>MLC</code>：Multi-Level Cell</li>
+<li><code>TLC</code>：Trinary-Level Cell</li>
+<li><code>QLC</code>：Quad-Level Cell</li>
+</ul>
+<p>由于闪存单元将信息用电信号的形式存放并用于读取，这四类分别代表一个存储单元内能存放几位信息，从1到4，能存放的信息增加，读写的时候需要调整的电位精度也逐渐严格，因而从上至下SSD的存储密度上升，价格低廉，但使用寿命和读写速度也会随之下降</p>
+<p>厂商常会在SSD中加入更快的存储单元构成的小容量缓存，因而测试SSD时，不光要看<strong>初始速度</strong>，还要看大量读写缓存用完后的真实速度</p>
+<h2 id="硬件架构"><a href="#硬件架构" class="headerlink" title="硬件架构"></a>硬件架构</h2><h3 id="部件简介"><a href="#部件简介" class="headerlink" title="部件简介"></a>部件简介</h3><p>SSD设备上通常有以下部件：</p>
+<ul>
+<li>Controller：控制SSD的读写、更新映射表、垃圾回收等</li>
+<li>Memory：存放SSD的映射表等关键数据</li>
+<li>NAND flash：<ul>
+<li>NAND闪存通常是SSD真正的存储介质，掉电后数据不丢失</li>
+<li>闪存从单元开始逐步封装，一般会封装至芯片的规模，在SSD上成为不同的<code>channel</code>，方便使用RAID0方式提高访存速度</li>
+</ul>
+</li>
+</ul>
+<h3 id="闪存自底向上"><a href="#闪存自底向上" class="headerlink" title="闪存自底向上"></a>闪存自底向上</h3><p>常见的NAND架构是2D NAND，存储单元按照行(<code>rows</code>)与列(<code>columns</code>)的方式排列，同一行组成页(<code>pages</code>)被管理，不同的页组成块(<code>block</code>)进行擦除等操作，多个块再组成颗粒(<code>die</code>)(芯片封装前的晶粒)，多个颗粒封装成为芯片(<code>chip</code>)，芯片最后构成SSD设备(<code>device</code>)的存储介质</p>
+<p>因此，在SSD的控制器上常采用(block, page)的方式对物理页寻址</p>
+<h3 id="映射表"><a href="#映射表" class="headerlink" title="映射表"></a>映射表</h3><ul>
+<li><p>映射表在主机页写之后形成或修改，并可能在SSD的垃圾回收过程中改动，记录了主机页到物理页的映射</p>
+</li>
+<li><p>映射表不需要很大：<code>(SSD标识容量/物理页大小)*物理页地址位长</code>即可</p>
+</li>
+<li><p>映射表一般存放在SSD片上的DRAM中，读取主机页只需要访问一次闪存，如果存放在闪存中则需要访问两次，更慢一些</p>
+</li>
+</ul>
+<h2 id="SSD运行原理"><a href="#SSD运行原理" class="headerlink" title="SSD运行原理"></a>SSD运行原理</h2><h3 id="读写"><a href="#读写" class="headerlink" title="读写"></a>读写</h3><ul>
+<li><p>以页为单位</p>
+</li>
+<li><p>读(<code>Read</code>)：根据主机页查找映射表，寻址得到物理页，返回数据</p>
+</li>
+<li><p>写(<code>Write</code>/<code>Program</code>)：</p>
+<ul>
+<li>闪存不能覆写(<code>overwrite</code>)，只能写空闲页，或者先擦除再写</li>
+<li>有空闲页时，根据主机页的数据，找到空闲物理页，写入数据，更新映射表，更新后可能产生无效页，后续被垃圾回收</li>
+<li>没空闲页时，先进行垃圾回收得到空闲页再写</li>
+</ul>
+</li>
+</ul>
+<h3 id="擦除与垃圾回收"><a href="#擦除与垃圾回收" class="headerlink" title="擦除与垃圾回收"></a>擦除与垃圾回收</h3><ul>
+<li>擦除(<code>Erase</code>)以块为单位</li>
+<li>擦除时，确认块上没有仍被映射表映射的有效页(<code>valid page</code>)，然后将一整块上的数据擦除</li>
+<li>如果空闲页过少就要进行垃圾回收，将多个块上的有效页集中到一块，然后将这几块分别擦除</li>
+<li>厂商设计一定的<code>OP</code>(over-provisioning)率，标识容量&lt;实际容量，让宏观的垃圾回收花费更少</li>
+</ul>
+<h3 id="使用寿命"><a href="#使用寿命" class="headerlink" title="使用寿命"></a>使用寿命</h3><ul>
+<li><p>SSD的使用寿命常用擦写数<code>P/E</code>(Program/Erase Count)作为参数进行衡量</p>
+</li>
+<li><p>为了提高寿命，SSD具有磨损平衡(Wear Leveling，WL)机制</p>
+<ul>
+<li>动态：每次擦写时优先选择擦写次数少的单元</li>
+<li>静态：SSD闲置时将数据从擦写次数多的块搬运到擦写次数少的块</li>
+</ul>
+<p>中心思想是让擦写次数均衡</p>
+</li>
+</ul>
+<h1 id="SSD装机"><a href="#SSD装机" class="headerlink" title="SSD装机"></a>SSD装机</h1><p>SSD作为外设，需要安装到主机正确的接口上，通过支持正确协议的总线通道来使用</p>
+<p>考虑影响SSD性能的因素，除了上一节中，颗粒、OP率等SSD设备自身的指标，还有使用的总线通道与协议决定的瓶颈速率</p>
+<h2 id="常用接口与协议"><a href="#常用接口与协议" class="headerlink" title="常用接口与协议"></a>常用接口与协议</h2><p>引用胡老师的一句名言：<strong>硬件进行连接，软件解决访问</strong>，研究接口的过程中，也既要关注硬件连接，又要关注实际采用的总线和协议</p>
+<p>在SSD应用的领域，则有如下常用的总线、协议与接口：</p>
+<h3 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h3><ul>
+<li><code>SATA</code>：1.0，2.0，<strong>3.0</strong></li>
+<li><code>PCI-E</code>(PCI Express)：<ul>
+<li>Gen 2，Gen 3，<strong>Gen 4</strong></li>
+<li>应用广泛，先有PCI-E后有SSD</li>
+</ul>
+</li>
+</ul>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><ul>
+<li><code>AHCI</code>：两类总线均可使用</li>
+<li><code>NVME</code>：<code>PCI-E</code>总线可用</li>
+</ul>
+<h3 id="硬件接口"><a href="#硬件接口" class="headerlink" title="硬件接口"></a>硬件接口</h3><ul>
+<li>走SATA总线：<ul>
+<li><code>SATA</code>：历史悠久</li>
+<li><code>SAS</code>：SATA改进，加入SCSI，稳定安全</li>
+<li><code>SATA Express</code>：并行加速，昙花一现</li>
+<li><code>mSATA</code>：微机接口</li>
+<li><code>M.2 B Key</code>：微机接口，笔记本电脑常见，特别地，支持<code>PCI-E X2</code>总线</li>
+</ul>
+</li>
+<li>走PCI-E总线：<ul>
+<li><code>PCIE</code><ul>
+<li>同一Gen下，接口硬件长度对应最大带宽，用<code>X1</code>、<code>X2</code>等标识</li>
+<li>实际最大带宽要看是直连CPU还是经过南桥</li>
+<li>可以连PCI-E转M.2等转接设备，增强泛用性</li>
+</ul>
+</li>
+<li><code>M.2 M Key</code>：采用NVME协议，理论上向下兼容B Key</li>
+<li><code>U.2</code>：和SAS同形，但采用PCI-E总线，NVME协议</li>
+</ul>
+</li>
+</ul>
+<h2 id="选取与安装"><a href="#选取与安装" class="headerlink" title="选取与安装"></a>选取与安装</h2><p>不仅是SSD，研究外设采用的协议和接口，安装合适的设备，可以找到一种泛用的方法，就是研究主板<code>motherboard</code>的规格书与手册。通常配置的主机设备，都是在主板(通常采用<code>ATX</code>等主板规格)的基础上安装CPU、直接通讯设备与各种外设</p>
+<p>对于PC而言，主板上通常有如下组件：</p>
+<ul>
+<li><p>内置通用外设：网卡、声卡等</p>
+</li>
+<li><p>芯片组：北桥、南桥</p>
+<ul>
+<li>北桥负责同内存、GPU等高速设备通信，和南桥、CPU通信，近几年功能逐渐被整合进CPU中，在主板上消失</li>
+<li>南桥负责同硬盘、键盘等低速设备通信，和北桥通信，由于北桥消失而整合剩余功能变成<code>PCH</code>(Platform Controller Hub)</li>
+</ul>
+</li>
+<li><p>各种接口：<code>SATA3.0</code>、<code>PCI-E X16</code>等</p>
+</li>
+<li><p>各种布线：总线通道等</p>
+</li>
+<li><p>其他部件：散热片、马甲板等</p>
+</li>
+</ul>
+<p>在定制设备的过程中，通过选用合适的主板可以节省已经内置的外设。由于同一种接口有时可以对接不同的设备(如PCI-E接口可以对接SSD、GPU乃至高速网卡)，因此可以灵活变通。对于一种设备，弄清它安装的接口(尺寸)与数据的通道，并查阅主板的手册进行印证即可</p>
+<p>特别地，主板规格一般和CPU特定的芯片组对应，例如，<code>Intel Z370 Chipset</code>这一芯片组就兼容intel的8代和9代的很多CPU，主板厂商也会在支持的主板型号中加上<code>Z370</code>的名称，在官网查找文档即可相互匹配</p>
+<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40343504/article/details/84335087">SSD 闪存颗粒详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://dustparticle.blog/2018/09/02/lets-develop-solid-state-drive-ssd-part-1/">SSD Firmware Development — Part2 — NAND Basics</a></p>
+<p><a target="_blank" rel="noopener" href="https://phandinhlan.medium.com/lets-develop-part-2-4276fe266ef9">SSD Firmware Development — Part 3 — Addressing</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.r9it.com/20210420/ssd-cell-types.html">谈一谈不同固态硬盘颗粒(SLC,MLC,TLC,QLC)的区别</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.elinfor.com/knowledge/overview-of-ssd-structure-and-basic-working-principle2-p-11204">Overview of SSD Structure and Basic Working Principle(2)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%82%8F%E8%BC%AF%E5%8D%80%E5%A1%8A%E4%BD%8D%E5%9D%80">逻辑区块地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kingston.com.cn/unitedstates/us/ssd/overprovisioning">Understanding SSD Over-provisioning (OP)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ark.intel.com/content/www/us/en/ark/products/125903/intel-z370-chipset.html">Intel® Z370 Chipset</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/66881178">主板上的南北桥是什么东西？</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62426408">PCI-E通道是个什么东西？他是干啥的？</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangmo/p/11171200.html">SSD接口详解，再也不会买错固态硬盘了</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kingston.com.cn/unitedstates/en/community/articledetail/articleid/48543">Understanding SSD Technology: NVMe, SATA, M.2</a></p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/03/04/Potpourri-Feb.2022/" title="Potpourri-Feb.2022"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: Potpourri-Feb.2022</span></a><a class="button is-default" href="/2022/02/01/Excel%E6%B3%9B%E7%94%A8%E6%8A%80%E5%B7%A7-%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF/" title="Excel泛用技巧-条件分支"><span class="has-text-weight-semibold">Next: Excel泛用技巧-条件分支</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="title" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/da-xuan-90-35"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

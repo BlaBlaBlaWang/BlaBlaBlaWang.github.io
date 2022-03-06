@@ -51,7 +51,7 @@ shell简介shell英文直译为“壳”，“外壳”，广义上的shell指�
 <li><p><code>zsh</code>：</p>
 <ul>
 <li>全称<code>Z shell</code>，是bash的扩展，加入了很多强大的功能</li>
-<li>配置一般使用<code>oh my zsh</code>项目</li>
+<li>配置一般使用<code>oh my zsh</code>项目，再搭配<code>Powerlevel10k</code>等主题</li>
 </ul>
 </li>
 </ul>
@@ -85,7 +85,7 @@ shell简介shell英文直译为“壳”，“外壳”，广义上的shell指�
 </li>
 </ul>
 <h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><h3 id="查看当前的shell"><a href="#查看当前的shell" class="headerlink" title="查看当前的shell"></a>查看当前的shell</h3><ul>
-<li><p>查询当前shell的0号参数</p>
+<li><p>查询当前shell的<code>0</code>号参数</p>
 <pre><code class="shell">echo $0
 </code></pre>
 </li>
@@ -104,7 +104,7 @@ shell简介shell英文直译为“壳”，“外壳”，广义上的shell指�
 <pre><code class="shell">ps
 </code></pre>
 </li>
-<li><p>查看当前shell的$参数，它代表了当前shell的进程号，然后利用ps找到进程详细信息</p>
+<li><p>查看当前shell的<code>$</code>参数，它代表了当前shell的进程号，然后利用ps找到进程详细信息</p>
 <pre><code class="shell">echo $$
 ps aux | grep [PID]
 </code></pre>
@@ -125,11 +125,11 @@ ps aux | grep [PID]
 </ul>
 <h3 id="设置默认shell"><a href="#设置默认shell" class="headerlink" title="设置默认shell"></a>设置默认shell</h3><p>如果偏爱某种类型的shell，不如将它设置为用户的login shell，这样每次启动新shell都会是它而无需命令切换</p>
 <ul>
-<li><p>使用<code>chsh</code>命令，<code>-s</code>参数指定了切换后的默认login shell ，若为空则使用系统默认</p>
+<li><p>使用<code>chsh</code>命令，它可以切换login shell，<code>-s</code>选项指定了切换后的默认login shell ，若为空则使用系统默认</p>
 <pre><code class="shell">chsh -s [ShellDir]
 </code></pre>
 </li>
-<li><p>使用<code>usermod</code>命令，它可以修改用户的有关信息，<code>-s</code>参数含义同上</p>
+<li><p>使用<code>usermod</code>命令，它可以修改用户的有关信息，<code>-s</code>选项含义同上</p>
 <pre><code class="shell">usermod -s [ShellDir] [UserName]
 </code></pre>
 </li>
@@ -269,4 +269,4 @@ ll /proc/[PID]/fd | grep tty    #查看对应进程号[PID]所打开的文件中
 <p><a target="_blank" rel="noopener" href="https://www.ibm.com/docs/en/aix/7.2?topic=passwords-using-etcpasswd-file">Using the /etc/passwd file</a></p>
 <p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/732.html">常用的Shell有哪些</a></p>
 <p><a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/a6153354865c225bdce5bd55e">理解 Linux 终端、终端模拟器和伪终端</a></p>
-</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/01/04/Ubuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AC%E5%9C%9F%E5%8C%96%E9%85%8D%E7%BD%AE%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%BA%90%E3%80%81%E8%BE%93%E5%85%A5%E6%B3%95%E4%B8%8E%E5%AD%97%E4%BD%93/" title="ubuntu系统的本土化配置：软件源、输入法与字体"><span class="has-text-weight-semibold">Next: ubuntu系统的本土化配置：软件源、输入法与字体</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="title" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/da-xuan-90-35"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/01/28/%E8%B0%81%E6%B1%A1%E6%9F%93%E4%BA%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E5%86%85%E5%AE%B9%EF%BC%9F%E8%90%A5%E9%94%80%E5%8F%B7%E4%B8%8E%E5%9E%83%E5%9C%BE%E7%AB%99%E7%82%B9%E7%9A%84%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/" title="谁污染了你的网络内容？营销号与垃圾站点的千层套路"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 谁污染了你的网络内容？营销号与垃圾站点的千层套路</span></a><a class="button is-default" href="/2022/01/04/Ubuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AC%E5%9C%9F%E5%8C%96%E9%85%8D%E7%BD%AE%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%BA%90%E3%80%81%E8%BE%93%E5%85%A5%E6%B3%95%E4%B8%8E%E5%AD%97%E4%BD%93/" title="ubuntu系统的本土化配置：软件源、输入法与字体"><span class="has-text-weight-semibold">Next: ubuntu系统的本土化配置：软件源、输入法与字体</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="BlaBlaBlaWang/BlaBlaBlaWang.github.io" src="https://utteranc.es/client.js" issue-term="title" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/BlaBlaBlaWang"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/da-xuan-90-35"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> BlaBlaBlaWang 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
