@@ -91,28 +91,28 @@ wildcard
 <p><code>file $(ls -d /usr/bin/* | grep zip)</code></p>
 <p>为了向下兼容旧版本的shell程序，也可以使用反引号``来包裹命令</p>
 <h1 id="禁用"><a href="#禁用" class="headerlink" title="禁用"></a>禁用</h1><p><strong>背景</strong>：</p>
-<p>shell在处理命令的时候不光进行了展开的工作，在此之前它还对输入进行了分词，因而多余的空白符可能不会按照我们的想法执行</p>
+<p>shell在处理命令的时候不光进行了展开的工作，在此之前它还对输入进行了分词，因而多余的空白符可能不会按照我们的想法被处理</p>
 <p>在实际使用中，我们有些情况下也不希望shell进行展开</p>
 <p><strong>解决</strong>：</p>
 <ul>
 <li><p>双引号：shell对双引号中的内容只会对<code>$</code>、<code>\</code>和`进行特殊对待，其它字符及代表的展开序列都不再展开与分词</p>
 <ul>
 <li><code>ls -l "seperate file.txt"</code>，就可以正确展示包含空白符的文件的详细信息，而不会分词后理解为两个参数</li>
-<li><code>echo "$(cal)"</code>，就可以将命令结果作为一个参数，保留<code>cal</code>命令输出中的各种空白符，不加双引号则会被命令替换成为若干个参数后一整行输出</li>
+<li><code>echo "$(cal)"</code>，就可以将命令结果作为一个参数，保留cal命令输出中的各种空白符，不加双引号则会被命令替换成为若干个参数后一整行输出</li>
 </ul>
 </li>
 <li><p>单引号：shell对单引号中的内容完全保留原有模样</p>
 <ul>
-<li><code>echo '$(cal)'</code>会原样输出echo的参数<code>$(cal)</code></li>
+<li><code>echo '$(cal)'</code>会原样输出echo的参数$(cal)</li>
 </ul>
 </li>
-<li><p>转移字符(<code>Escape Character</code>)：反斜杠<code>\</code>可以让<code>$</code>等字符失效，作为普通的字符被shell对待，甚至包括反斜杠自己</p>
+<li><p>转义字符(<code>Escape Character</code>)：反斜杠<code>\</code>可以让<code>$</code>等字符失效，作为普通的字符被shell对待，甚至包括反斜杠自己</p>
 <ul>
 <li><code>echo give me \$100</code>会将美元符号正确输出，而非理解成环境变量</li>
 </ul>
-<p>如果要输出C那样的转移序列(<code>Escape Sequence</code>)，可以用如下的方式：</p>
+<p>如果要输出C那样的转义序列(<code>Escape Sequence</code>)，可以用如下的方式：</p>
 <ol>
-<li>为<code>echo</code>加上<code>-e</code>选项：<code>echo -e "\a"</code></li>
+<li>为echo加上<code>-e</code>选项：<code>echo -e "\a"</code></li>
 <li>使用<code>$' '</code>包裹：<code>echo $'\a'</code></li>
 </ol>
 </li>
